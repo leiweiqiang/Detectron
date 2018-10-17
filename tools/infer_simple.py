@@ -177,6 +177,22 @@ def main(args):
             out_when_no_box=args.out_when_no_box
         )
 
+        vis_utils.vis_one_image_ex(
+            im[:, :, ::-1],  # BGR -> RGB for visualization
+            im_name,
+            args.output_dir,
+            cls_boxes,
+            cls_segms,
+            cls_keyps,
+            dataset=dummy_coco_dataset,
+            box_alpha=0.3,
+            show_class=True,
+            thresh=args.thresh,
+            kp_thresh=args.kp_thresh,
+            ext=args.output_ext,
+            out_when_no_box=args.out_when_no_box
+        )
+
 
 if __name__ == '__main__':
     workspace.GlobalInit(['caffe2', '--caffe2_log_level=0'])
