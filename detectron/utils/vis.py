@@ -481,13 +481,24 @@ def vis_one_image_ex(
                 e.copy(), cv2.RETR_CCOMP, cv2.CHAIN_APPROX_NONE)
 
             for c in contour:
-                polygon = Polygon(
+                if is_person is False:
+                    polygon = Polygon(
+                        c.reshape((-1, 2)),
+                        fill=True,
+                        facecolor=(0,0,0),
+                        edgecolor='w',
+                        linewidth=0,
+                        alpha=0.5)
+                    ax.add_patch(polygon)
+                else:
+                    polygon = Polygon(
                     c.reshape((-1, 2)),
-                    fill=True, facecolor=color_mask if is_person is False else (0,0,0),
+                    fill=True,
+                    facecolor=(0,0,0),
                     edgecolor='w',
-                    linewidth=1.2 if is_person is False else 0,
-                    alpha=0.5 if is_person is False else 1)
-                ax.add_patch(polygon)
+                    linewidth=0,
+                    alpha=01)
+                    ax.add_patch(polygon)
 
         # show keypoints
         if is_person is False:
