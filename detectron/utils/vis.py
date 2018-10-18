@@ -488,7 +488,7 @@ def vis_one_image_ex(
                         facecolor=color_mask,
                         edgecolor='w',
                         linewidth=1.2,
-                        alpha=0.5
+                        alpha=0.5)
                     ax.add_patch(polygon)
                 else:
                     polygon = Polygon(
