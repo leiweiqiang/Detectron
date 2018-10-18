@@ -484,8 +484,9 @@ def vis_one_image_ex(
                 polygon = Polygon(
                     c.reshape((-1, 2)),
                     fill=True, facecolor=color_mask if is_person is False else (0,0,0),
-                    edgecolor='w', linewidth=1.2,
-                    alpha=0.5)
+                    edgecolor='w',
+                    linewidth=1.2 if is_person is False else 0,
+                    alpha=0.5 if is_person is False else 1)
                 ax.add_patch(polygon)
 
         # show keypoints
