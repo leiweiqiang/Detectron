@@ -399,6 +399,7 @@ def vis_one_image_ex(
         kp_thresh=2, dpi=200, box_alpha=0.0, dataset=None, show_class=False,
         ext='pdf', out_when_no_box=False):
     """Visual debugging of detections."""
+
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
@@ -444,7 +445,7 @@ def vis_one_image_ex(
         is_person = get_class_string(classes[i], score, dataset).startswith('person')
 
         # show box (off by default)
-        if !is_person:
+        if is_person is False:
             ax.add_patch(
                 plt.Rectangle((bbox[0], bbox[1]),
                               bbox[2] - bbox[0],
@@ -452,7 +453,7 @@ def vis_one_image_ex(
                               fill=False, edgecolor='g',
                               linewidth=0.5, alpha=box_alpha))
 
-        if !is_person:
+        if is_person is False:
             if show_class:
                 ax.text(
                     bbox[0], bbox[1] - 2,
@@ -482,13 +483,13 @@ def vis_one_image_ex(
             for c in contour:
                 polygon = Polygon(
                     c.reshape((-1, 2)),
-                    fill=True, facecolor=color_mask if is_person else (0,0,0),
+                    fill=True, facecolor=color_mask if is_person is True else (0,0,0),
                     edgecolor='w', linewidth=1.2,
                     alpha=0.5)
                 ax.add_patch(polygon)
 
         # show keypoints
-        if !is_person:
+        if is_person is False:
             if keypoints is not None and len(keypoints) > i:
                 kps = keypoints[i]
                 plt.autoscale(False)
