@@ -483,7 +483,7 @@ def vis_one_image_ex(
             for c in contour:
                 polygon = Polygon(
                     c.reshape((-1, 2)),
-                    fill=True, facecolor=color_mask if is_person is True else (0,0,0),
+                    fill=True, facecolor=color_mask if is_person is False else (0,0,0),
                     edgecolor='w', linewidth=1.2,
                     alpha=0.5)
                 ax.add_patch(polygon)
